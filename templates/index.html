@@ -1,0 +1,192 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+  <style>
+    hr {
+      background-color: black;
+      color: black;
+      height: 5px;
+      border-radius: 15px;
+    }
+  </style>
+</head>
+<body style="background-color: rgb(118, 118, 176);">
+<main id="main">
+
+  <!-- ======= Hero Slider Section ======= -->
+<br><hr><br>
+  {% for i in category %}
+<div style="display: inline; margin: 0 auto;">
+  <h5 style="text-align: center; display: inline; margin-left: 20px;">
+  <a href="{% url 'home' %}?category={{i.id}}" style="text-decoration: none; color: gold;">
+    {{i.name}}
+  </a>  
+  </h5>
+</div>
+  {% endfor %}
+<br><hr>
+
+
+
+  <section id="hero-slider" class="hero-slider">
+    <div class="container-md" data-aos="fade-in">
+      <div class="row">
+        <div class="col-12">
+          <div class="swiper sliderFeaturedPosts">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a href="#" class="img-bg d-flex align-items-end"
+                  style="background-image: url('https://upg.uz/storage/files/products/2416/original/QLxw2BS0zt2cQkLJJ2XRQa2GA7k7NHJOg09DK9IJ.jpg');">
+                  <div class="img-bg-inner">
+                    <h2>50% chegirma</h2>
+                    <p>Co-founder of l'Encyclopédie Denis Diderot lived in poverty - then a windfall paid 
+                    for a new scarlet robe. His belongings seem shabby in contrast,
+                    he composes Regrets on Parting with My Old Dressing Gown - behold
+                    - "The Diderot Effect" is born! Diderot thought Diogenes would laugh at him,
+                     but Diogenes might've traded his barrel for UPG's 100% cotton T-shirts - smart,
+                    \funny, priced for cynics. Now philosophes can build
+                     a wardrobe that fits (ha!) their philosophy.</p>
+                  </div>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="#" class="img-bg d-flex align-items-end"
+                  style="background-image: url('https://m.media-amazon.com/images/I/614aiM56siL._SL1500_.jpg');">
+                  <div class="img-bg-inner">
+                    <h2>40% chegirma</h2>
+                    <p>Level up your rotation with these men's Air Max 1 trainers from Nike. In a Phantom 
+                    and Khaki colourway, these old-school runners have a mixed-material upper with airy 
+                    mesh layered under real and synthetic leather and suede for lasting wear. They have a 
+                    lace-up fastening with plush padding around the ankle collar for a locked-in fit, and 
+                    sit above a spongy foam midsole with a Max Air unit underfoot for supreme comfort. 
+                    They have a tough rubber outsole with the iconic Waffle tread pattern, and are 
+                    finished with signature Swoosh branding throughout.</p>
+                  </div>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="#" class="img-bg d-flex align-items-end"
+                  style="background-image: url('https://images.picxy.com/cache/2021/4/10/d18ca4656d39064a3dd1b33984687c32.jpg');">
+                  <div class="img-bg-inner">
+                    <h2>100% chegirma shoshiling</h2>
+                    <p>A grape is a fruit, botanically a berry, of the deciduous woody vines of the 
+                      flowering plant genus Vitis. Grapes are a non-climacteric type of fruit, generally
+                      occurring in clusters. The cultivation of grapes began approximately 8,000 years ago,
+                      and the fruit has been used as human food throughout its history.</p>
+                  </div>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="#" class="img-bg d-flex align-items-end"
+                  style="background-image: url('https://cdn.thewirecutter.com/wp-content/media/2021/09/refrigerators-2048px-frigidaire-FFTR2021TS-topfreezer.jpg');">
+                  <div class="img-bg-inner">
+                    <h2>75% chegirma</h2>
+                    <p>A refrigerator, commonly fridge, is a commercial and home appliance consisting of 
+                    a thermally insulated compartment and a heat pump (mechanical, electronic or chemical)
+                    that transfers heat from its inside to its external environment so that its inside is 
+                    cooled to a temperature below the room temperature.</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="custom-swiper-button-next">
+              <span class="bi-chevron-right"></span>
+            </div>
+            <div class="custom-swiper-button-prev">
+              <span class="bi-chevron-left"></span>
+            </div>
+
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero Slider Section -->
+
+
+  <!-- ======= Post Grid Section ======= -->
+
+  <!-- Product Card list -->
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for i in products %}
+      <div class="col">
+        <div class="card h-100">
+          {% if i.product_images.exists %}
+          <a href="{% url 'detail' i.id %}"><img src="{{i.product_images.first.image.url}}" class="card-img-top"
+              alt="..." style="height: 350px;"></a>
+          {% else %}
+          <a href="{% url 'detail' i.id %}"><img src="{{i.no_image.url}}" class="card-img-top" alt="..."
+              style="height: 300px;"></a>
+          {% endif %}
+          <div class="card-body" style="float: right;">
+            <h5 class="card-title">{{i.name}}</h5>
+            {% if request.user == i.user %}
+            <span style="text-align: center;">edit</span>
+            {% endif %}
+            <i class="fa-solid fa-pen-to-square"></i>
+            <p class="card-text">{{i.description}}</p>
+            <p class="card-text">{{i.price}}</p>
+            <p class="card-text">{{i.category}}</p>
+            <button type="submit" style="color: red; background-color: transparent; width: 30px; height: 30px; border: none;">
+            <i class="bi bi-heart-fill"></i>
+            </button><br><hr style="background-color: blue; color: blue; width: 200px;">
+            <!-- Button trigger modal -->
+
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+     delete 
+</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">DELETE</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="color: red;">
+        Aniq o'shirishni hohlaysizmi ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">YOQ</button>
+        <button type="button" class="btn btn-primary"><a href="{% url 'delete' i.id %} " class="btn btn-primary">HA</a></button>
+      </div>
+    </div>
+  </div>
+</div><br><hr style="background-color: blue; color: blue; width: 200px;">
+<a href="{% url 'edit' i.id %}"><button type="submit" class="btn btn-primary">edit</button></a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+
+  <!-- End Product -->
+
+
+</main><!-- End #main -->
+</body>
+
+
+<!-- Vendor JS Files -->
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+<script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'assets/js/main.js' %}"></script> 
+
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block link %}
+<br><br><br><br><br><br><br><br><br><br><br>
+
+<head>
+  <style>
+    .container  {
+      max-width: 1400px;
+    }
+    form {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      max-width: 400px;
+      
+    }
+    form input {
+      border: 3px solid green;
+      border-radius: 60px;
+      width: 280px;
+      height: 50px;
+    }
+    input:hover {
+      border: 5px solid green;
+      background-color: aquamarine;
+    }
+    form button{
+      border: 3px solid ;
+    }
+  </style>
+</head>
+
+<body style="background: url(https://forums.macrumors.com/attachments/monterey-mac-jpg.1788406/); background-repeat: no-repeat;">
+
+<div class="container">
+<div class="col-lg-12 text-center mb-5">
+  <h1 class="page-title">IT school</h1>
+</div>
+</div><br><br><br><br><br>
+
+<div class="cards">
+<div class="row gy-5">
+
+  <div class="col-md-4">
+    <div class="info-item">
+      <i class="bi bi-geo-alt"></i>
+      <h3>Address</h3>
+      <address>Namangan shahar It park</address>
+    </div>
+  </div><!-- End Info Item -->
+
+  <div class="col-md-4">
+    <div class="info-item info-item-borders">
+      <i class="bi bi-phone"></i>
+      <h3>Phone Number</h3>
+      <p><a href="tel:+155895548855">+998917651711 +998993417076</a></p>
+    </div>
+  </div><!-- End Info Item -->
+
+  <div class="col-md-4">
+    <div class="info-item">
+      <i class="bi bi-envelope"></i>
+      <h3>Email</h3>
+      <p><a href="mailto:info@example.com">It_offical</a></p>
+    </div>
+  </div><!-- End Info Item -->
+</div><br><br><br>
+<hr style="height: 5px; background-color: pink; color: pink; margin-left: 200px; width: 1500px;">
+
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="text" name="name" id="" placeholder="Ismingizni kiriting ..."><br>
+  <input type="text" name="last_name" id="" placeholder="Familyangizni kiiriting ..."><br>
+  <input type="text" name="email" id="" placeholder="Email kiiriting ...">
+  <input type="text" name="password" id="" placeholder="Parol kiiriting ...">
+  <input type="text" name="phone_number" id="" placeholder="Telefon raqamingizni kiiriting ...">
+  <button type="submit">save</button>
+</form><br><br><br>
+</div>
+</body>
+
+  
+{% endblock %}
